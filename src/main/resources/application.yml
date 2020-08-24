@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        #----配置输入和输出,mqTestDefault,device_mq为exchange名称,加了group则此队列会持久化，且队列名称为mqTestDefault.group1
+        input:
+          group: group1
+          destination: mqTestDefault
+        output:
+          group: group1
+          destination: mqTestDefault
+          contentType: text/plain
+        #----------------------------------------
+        deviceInput:
+          group: group1
+          destination: device_mq
+        deviceOutput:
+          destination: device_mq
+      binders:
+        #rabbimq配置
+        defaultRabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: 192.168.0.2
+                username: ypadmin
+                password: ypkj888...
+
